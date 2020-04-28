@@ -20,9 +20,8 @@ namespace L31
                     if (n >= 10000 || n == 0 || n % 2 == 0 || n % 5 == 0)
                         Console.WriteLine("No solution");
                     else
-                    {
                         Console.WriteLine(GetUnits(n));
-                    }
+                    
                 }
             }
         }

@@ -9,6 +9,7 @@ namespace L32
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             using (StreamReader str = new StreamReader("file.txt"))
@@ -17,37 +18,63 @@ namespace L32
                 while ((input = str.ReadLine()) != null)
                 {
                     int n = Convert.ToInt32(input);
-                    if (n >= 1000 || n < 1 )
+                    if (n >= 1000 || n < 1)
                         Console.WriteLine("No solution");
                     else
-                    {
                         Console.WriteLine(GetNumbsQuant(n));
-                    }
                 }
             }
         }
         static int GetNumbsQuant(int n)
         {
+            List<int[]> numbs = new List<int[]>();
+            int[] numb = new int[] { 1 };
+            numbs.Add(numb);
             int bits = 1, s = 0;
-            List<int[]> numbs;
+
             while (bits < n)
             {
-                for (int i = 1; i <= bits; i++)
-                {
-                    for (int j = 1; j <= 4; j++)
-                    {
-                        
-                    }
-                }
-                bits++;
+                numb = IncrNumb(numb);
+                numbs.Add(numb);
             }
+            foreach (var number in numbs)
+                if (CalcSum(number) == n) s++;
+            return s;
 
 
         }
-        static bool Calc(int[] numbs)
+        static int CalcSum(int[] numb)
         {
-
+            int sum = 0;
+            foreach (var digit in numb)
+                sum += digit != 4 ? digit : 1; 
+            return sum;
         }
+        static int[] IncrNumb(int[] numb)
+        {
+            List<int> newNumb = new List<int>();
+            int shift = 1;
+            for (int i = numb.Length - 1; i >= 0; i--)
+            {
+                int digit = (numb[i] + shift) % 5;
+                newNumb.Add(digit == 0 ? 1 : digit);
+                shift = (numb[i] + shift) / 5;
+            }
+            if (shift != 0) newNumb.Add(shift);
+            return newNumb.ToArray();
+        }
+        static int GetNumbByDigits(int[] digs)
+        {
+            int numb = 0;
+            int mult = 1;
+            for (int i = digs.Length - 1; i >= 0; i--)
+            {
+                numb += digs[i] * mult;
+                mult *= 10;
+            }
+            return numb;
+        }
+
     }
 }
 
