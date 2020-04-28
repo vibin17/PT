@@ -9,7 +9,6 @@ namespace L32
 {
     class Program
     {
-
         static void Main(string[] args)
         {
             using (StreamReader str = new StreamReader("file.txt"))
@@ -30,18 +29,17 @@ namespace L32
             List<int[]> numbs = new List<int[]>();
             int[] numb = new int[] { 1 };
             numbs.Add(numb);
-            int bits = 1, s = 0;
+            int bits = 1, quant = 0;
 
-            while (bits < n)
+            while (bits <= n)
             {
                 numb = IncrNumb(numb);
                 numbs.Add(numb);
+                bits = numb.Length;
             }
             foreach (var number in numbs)
-                if (CalcSum(number) == n) s++;
-            return s;
-
-
+                if (CalcSum(number) == n) quant++;
+            return quant;
         }
         static int CalcSum(int[] numb)
         {
@@ -54,7 +52,7 @@ namespace L32
         {
             List<int> newNumb = new List<int>();
             int shift = 1;
-            for (int i = numb.Length - 1; i >= 0; i--)
+            for (int i = 0; i < numb.Length; i++)
             {
                 int digit = (numb[i] + shift) % 5;
                 newNumb.Add(digit == 0 ? 1 : digit);
@@ -67,7 +65,7 @@ namespace L32
         {
             int numb = 0;
             int mult = 1;
-            for (int i = digs.Length - 1; i >= 0; i--)
+            for (int i = 0; i < digs.Length; i++)
             {
                 numb += digs[i] * mult;
                 mult *= 10;
