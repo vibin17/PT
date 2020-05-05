@@ -9,7 +9,7 @@ namespace L32
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             using (StreamReader str = new StreamReader("file.txt"))
             {
@@ -30,7 +30,6 @@ namespace L32
             int[] numb = new int[] { 1 };
             numbs.Add(numb);
             int bits = 1, quant = 0;
-
             while (bits <= n)
             {
                 numb = IncrNumb(numb);
