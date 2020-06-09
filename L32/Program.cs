@@ -9,7 +9,7 @@ namespace L32
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             using (StreamReader str = new StreamReader("file.txt"))
             {
