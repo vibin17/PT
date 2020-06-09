@@ -11,11 +11,11 @@ namespace L52
     {
         class Team : IComparable<Team>
         {
-            public int N;
+            public int Number;
             public int Members;
             public Team(int n, int members)
             {
-                N = n;
+                Number = n;
                 Members = members;
             }
             public int CompareTo(Team b)
@@ -26,13 +26,12 @@ namespace L52
         }
         class Table
         {
-            public int N;
-            public int Capacity;
-            public int reservedSeats = 0;
+            public int Number;
+            public int FreeSeats;
             public Table(int n, int c)
             {
-                N = n;
-                Capacity = c;
+                Number = n;
+                FreeSeats = c;
             }
         }
         static void Main()
@@ -64,14 +63,14 @@ namespace L52
                     {
                         foreach (var team in sortedTeams)
                         {
-                            if (table.Capacity > 0)
+                            if (table.FreeSeats > 0)
                             {
                                 if (team.Members > 0)
                                 {
-                                    table.Capacity--;
+                                    table.FreeSeats--;
                                     team.Members--;
                                     totalMembers--;
-                                    team.Seats.Add(table.N);
+                                    team.Seats.Add(table.Number);
                                 }
                             }
                         }
@@ -79,6 +78,7 @@ namespace L52
                     if (totalMembers == 0)
                     {
                         Console.WriteLine(1);
+                        teams.OrderBy(x => x.Number);
                         foreach (var team in teams)
                         {
                             foreach (int seat in team.Seats)
