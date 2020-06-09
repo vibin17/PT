@@ -21,16 +21,15 @@ namespace L31
                         Console.WriteLine("No solution");
                     else
                         Console.WriteLine(GetUnits(n));
-                    
                 }
             }
         }
         static int GetUnits(UInt64 n)
         {
             int[] notUnits = new int[] { 0, 2, 3, 4, 5, 6, 7, 8, 9 };
-            for (int i = 1; (UInt64)i * n <= UInt64.MaxValue; i++)
+            for (int i = 1; (UInt64)i * n <= UInt64.MaxValue; i += 2)
             {
-                if (i % 2 == 0 || i % 5 == 0)
+                if (i % 5 == 0)
                     continue;
                 int[] digs = GetDigitsArray((UInt64)i * n);
                 if (digs.Intersect(notUnits).ToArray().Length == 0)

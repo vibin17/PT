@@ -17,7 +17,7 @@ namespace L32
                 while ((input = str.ReadLine()) != null)
                 {
                     int n = Convert.ToInt32(input);
-                    if (n >= 1000 || n < 1)
+                    if (n > 1000 || n < 1)
                         Console.WriteLine("No solution");
                     else
                         Console.WriteLine(GetNumbsQuant(n));
@@ -30,7 +30,6 @@ namespace L32
             int[] numb = new int[] { 1 };
             numbs.Add(numb);
             int bits = 1, quant = 0;
-
             while (bits <= n)
             {
                 numb = IncrNumb(numb);
@@ -45,7 +44,7 @@ namespace L32
         {
             int sum = 0;
             foreach (var digit in numb)
-                sum += digit != 4 ? digit : 1; 
+                sum += digit != 4 ? digit : 1;
             return sum;
         }
         static int[] IncrNumb(int[] numb)
@@ -61,18 +60,6 @@ namespace L32
             if (shift != 0) newNumb.Add(shift);
             return newNumb.ToArray();
         }
-        static int GetNumbByDigits(int[] digs)
-        {
-            int numb = 0;
-            int mult = 1;
-            for (int i = 0; i < digs.Length; i++)
-            {
-                numb += digs[i] * mult;
-                mult *= 10;
-            }
-            return numb;
-        }
-
     }
 }
 
