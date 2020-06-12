@@ -68,8 +68,7 @@ namespace L42
                     Console.WriteLine(chainWeight);
                 }
             }
-            }
-
         }
     }
+}
 
